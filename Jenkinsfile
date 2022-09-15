@@ -9,12 +9,10 @@ pipeline {
 		}
 		
 		stage('Build Docker Image') {
-			steps {
-				{
+			steps {	
 					sh '''
 						docker build --tag=goribash/udacitycapstone .
-					'''
-				}
+					'''		
 			}
 		}
 
