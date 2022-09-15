@@ -11,7 +11,7 @@ pipeline {
 		stage('Build Docker Image') {
 			steps {	
 					sh '''
-						docker build --tag=goribash/udacitycapstone:latest .
+						docker build --tag=goribash/udacitycapstone .
 					'''		
 			}
 		}
