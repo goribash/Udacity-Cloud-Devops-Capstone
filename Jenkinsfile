@@ -20,7 +20,7 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
 					sh '''
-						docker login -u $USERNAME -p $PASSWORD-stdin
+						docker login -u $USERNAME -p $PASSWORD
 						docker push goribash/udacitycapstone
 					'''
 				}
