@@ -31,6 +31,7 @@ pipeline {
 			steps {
 				withAWS(credentials:'aws-credentials') {
 					sh '''
+						aws eks --region us-east-1 update-kubeconfig --name UdacityCapstoneCluster
 						kubectl config use-context arn:aws:eks:us-east-1:305470520825:cluster/UdacityCapstoneCluster
 					'''
 				}
