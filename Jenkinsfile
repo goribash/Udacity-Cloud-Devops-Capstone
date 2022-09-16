@@ -16,7 +16,7 @@ pipeline {
 			}
 		}
 
-		stage('Push Image To Dockerhub') {
+		stage('Push Image To DockerHub') {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
 					sh '''
@@ -27,7 +27,7 @@ pipeline {
 			}
 		}
 
-		stage('Set current kubectl context') {
+		stage('Set Current Kubectl context') {
 			steps {
 				withAWS(credentials:'aws-credentials') {
 					sh '''
@@ -38,7 +38,7 @@ pipeline {
 			}
 		}
 
-		stage('Deploy blue container') {
+		stage('Deploy Blue container') {
 			steps {
 				withAWS(credentials:'aws-credentials') {
 					sh '''
@@ -48,7 +48,7 @@ pipeline {
 			}
 		}
 
-		stage('Deploy green container') {
+		stage('Deploy Green container') {
 			steps {
 				withAWS(credentials:'aws-credentials') {
 					sh '''
@@ -58,7 +58,7 @@ pipeline {
 			}
 		}
 
-		stage('Create the service in the cluster, redirect to blue') {
+		stage('Create the service in the Cluster, redirect to blue') {
 			steps {
 				withAWS(credentials:'aws-credentials') {
 					sh '''
@@ -68,7 +68,7 @@ pipeline {
 			}
 		}
 
-		stage('Wait user approve') {
+		stage('Wait user Approval') {
             steps {
                 input "Ready to redirect traffic to green?"
             }
