@@ -29,7 +29,7 @@ pipeline {
 
 		stage('Set current kubectl context') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'aws-credentials') {
+				withAWS(credentials:'aws-credentials') {
 					sh '''
 						kubectl config use-context arn:aws:eks:us-east-1:305470520825:cluster/UdacityCapstoneCluster
 					'''
@@ -39,7 +39,7 @@ pipeline {
 
 		stage('Deploy blue container') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'aws-credentials') {
+				withAWS(credentials:'aws-credentials') {
 					sh '''
 						kubectl apply -f ./blue-controller.json
 					'''
@@ -59,7 +59,7 @@ pipeline {
 
 		stage('Create the service in the cluster, redirect to blue') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'aws-credentials') {
+				withAWS(credentials:'aws-credentials') {
 					sh '''
 						kubectl apply -f ./blue-service.json
 					'''
@@ -75,7 +75,7 @@ pipeline {
 
 		stage('Create the service in the cluster, redirect to green') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'aws-credentials') {
+				withAWS(rcredentials:'aws-credentials') {
 					sh '''
 						kubectl apply -f ./green-service.json
 					'''
